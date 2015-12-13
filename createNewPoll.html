@@ -1,69 +1,60 @@
-<html>
-  <head>
-    <title>
-      VOTE Project
-    </title>
-    <meta charset="utf-8"/>
-    <link type="text/css" rel="stylesheet" href="main.css"/>
-  <!--
-    <script language="JavaScript" type="text/javascript">
-      function isPrivate(){
-       if(pdocument.getElementById("private").checked = true;){
-          document.getElementById('isPrivate').style.visibility="visible";
-        }else{
-          document.getElementById('isPrivate').style.visibility="hidden"; 
-      }
+<?php
+  $host = "localhost";
+  $user = "";
+  $pass = "";
+  $db = "";
+  
+  my_sql_connect($host, $user, $pass);
+  my_sql_select_db($db);
+  
+  if(isset($_POST['username'])) {
+    $email = $_POST['email'];
+    $password =   $_POST['password'];
+    $sql1 = SELECT * FROM table_name WHERE question='".$question"' LIMIT 1;
+	$sql2 = SELECT * FROM table_name WHERE answers='".$answers"' LIMIT 10;
+    $res = mysql_query($sql);
+    if (mysql_num_rows($res) == 1) {
+      echo "Question";
+      exit();
+    } else if (mysql_num_rows($res) == 10){
+      echo "Answers"
+      exit();
     }
-    </script>
-    -->
-    <script language="JavaScript" type="text/javascript">
-      function check() {
-        if(document.getElementById("private").checked) {
-          document.getElementById("isPrivate").style.visibility = visible;
-        } else {
-          document.getElementById("isPrivate").style.visibility = hidden;
-        }
-      }
-    </script>
-  </head>
-  <body>
-    <div class="poll">
-      <form><p align=center>
-         <br/>Type your question here:<br/><br/>
-        <input type="text" style="font-size: 24pt" size="100" id="question" maxlength="300"><br/>
-        <br/> 
-        Max. 300 characters on your question<br/>
-        Max. 10 answers to your question.<br/><br/>
-          Answer: <input type="text" size="50" id="answer" maxLength="100"><br/>
-          Answer: <input type="text" size="50" id="answer" maxLength="100"><br/>
-          Answer: <input type="text" size="50" id="answer" maxLength="100"><br/>
-          Answer: <input type="text" size="50" id="answer" maxLength="100"><br/>
-          Answer: <input type="text" size="50" id="answer" maxLength="100"><br/>
-          Answer: <input type="text" size="50" id="answer" maxLength="100"><br/>
-          Answer: <input type="text" size="50" id="answer" maxLength="100"><br/>
-          Answer: <input type="text" size="50" id="answer" maxLength="100"><br/>
-          Answer: <input type="text" size="50" id="answer" maxLength="100"><br/>
-          Answer: <input type="text" size="50" id="answer" maxLength="100"><br/>
-          <ul>
-            <li><p align=center>
-              <input type="radio" id="public"> Public 
-              <input type="radio" id="private"> Private
-            </p></li>
-          </ul>
-            <div id="isPrivate">
-            <input type="password" id="privateKey" maxLength="10">  
-            <input class="button" type="button" value="Submit">
-            </div>
-          <br/><br/>
-          <p align=center><input class="button" id="CreateButton" type="button" value="Create Web Poll"></p>
-          <br/><br/>
-          <p align= left>Poll Link: <input class="text" size="100" id="pollLink">
-          <input class="button" id="Copy" type="button" value="Copy">
-          <br/><br/>
-          Poll Result Link: <input class="text" size="100" id="resultLink")>
-          <input class="button" id="Copy" type="button" value="Copy"></p>
-          </p>
-      </form>
-    </div>
-  </body>
+  }
+?>
+
+<html>
+	<head>
+	</head>
+	<body>
+	<script type="text/javascript">
+		var question = document.poll.elements[0].value;
+		var answers = new Array ();
+		for(var i=0; i<10; i++){
+			answers.push[document.poll.elements[i+1].value];
+			}
+	</script>
+	
+	<form name= "poll" action="cgi-bin/formmail.pl" method="post">
+
+  <input type="text" name="question" size="100" maxlength="50" /> <br/><br/>
+	<input type="text" name="answer1"  size="75" maxlength="50" /> <br/><br/>
+	<input type="text" name="answer2"  size="75" maxlength="50" /> <br/><br/>
+	<input type="text" name="answer3"  size="75" maxlength="50" /> <br/><br/>
+	<input type="text" name="answer4"  size="75" maxlength="50" /> <br/><br/>
+	<input type="text" name="answer5"  size="75" maxlength="50" /> <br/><br/>
+	<input type="text" name="answer6"  size="75" maxlength="50" /> <br/><br/>
+	<input type="text" name="answer7"  size="75" maxlength="50" /> <br/><br/>
+	<input type="text" name="answer8"  size="75" maxlength="50" /> <br/><br/>
+	<input type="text" name="answer9"  size="75" maxlength="50" /> <br/><br/>
+	<input type="text" name="answer10" size="75" maxlength="50" /> <br/><br/>
+	<input type="submit" name="submit" value="Submit" size="40" /> <br/><br/><br/><br/>
+	<br/><br/><br/><br/>
+	
+	<input type="submit" name="pl" value="Poll Link" size="40" /> <br/><br/>
+	<input type="submit" name="rl" value="Result Link" size="40" /> 
+
+</form>
+</body>
 </html>
+
