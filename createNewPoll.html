@@ -25,36 +25,66 @@
 
 <html>
 	<head>
+		<title>
+		  Vote Project
+		</title>
+		
 	</head>
 	<body>
 	<script type="text/javascript">
-		var question = document.poll.elements[0].value;
-		var answers = new Array ();
-		for(var i=0; i<10; i++){
-			answers.push[document.poll.elements[i+1].value];
+		function getPollInfo () {
+			var question = document.poll.elements[0].value;
+			var answers = new Array ();
+				for(var i=0; i<10; i++){
+					answers.push[document.poll.elements[i+1].value];
+				}
+		}
+		
+		function check() { <!-- there is a problem here. -->
+			if(document.getElementById('private').checked) {
+			  document.getElementById('key').style.visibility = visible;
+			} else {
+			  document.getElementById('key').style.visibility = hidden;
 			}
+      }
 	</script>
-	
-	<form name= "poll" action="cgi-bin/formmail.pl" method="post">
+	<center>
+	<form name= "poll">
 
-  <input type="text" name="question" size="100" maxlength="50" /> <br/><br/>
-	<input type="text" name="answer1"  size="75" maxlength="50" /> <br/><br/>
-	<input type="text" name="answer2"  size="75" maxlength="50" /> <br/><br/>
-	<input type="text" name="answer3"  size="75" maxlength="50" /> <br/><br/>
-	<input type="text" name="answer4"  size="75" maxlength="50" /> <br/><br/>
-	<input type="text" name="answer5"  size="75" maxlength="50" /> <br/><br/>
-	<input type="text" name="answer6"  size="75" maxlength="50" /> <br/><br/>
-	<input type="text" name="answer7"  size="75" maxlength="50" /> <br/><br/>
-	<input type="text" name="answer8"  size="75" maxlength="50" /> <br/><br/>
-	<input type="text" name="answer9"  size="75" maxlength="50" /> <br/><br/>
-	<input type="text" name="answer10" size="75" maxlength="50" /> <br/><br/>
-	<input type="submit" name="submit" value="Submit" size="40" /> <br/><br/><br/><br/>
-	<br/><br/><br/><br/>
-	
-	<input type="submit" name="pl" value="Poll Link" size="40" /> <br/><br/>
-	<input type="submit" name="rl" value="Result Link" size="40" /> 
-
+		Question: <input type="text" name="question" size="100" maxlength="300" /> <br/><br/>
+		
+		Answers: (Max. 10 answers)</br></br>
+		1.<input type="text" name="answer1"  size="20" maxlength="30" /> <br/><br/>
+		2.<input type="text" name="answer2"  size="20" maxlength="30" /> <br/><br/>
+		3.<input type="text" name="answer3"  size="20" maxlength="30" /> <br/><br/>
+		4.<input type="text" name="answer4"  size="20" maxlength="30" /> <br/><br/>
+		5.<input type="text" name="answer5"  size="20" maxlength="30" /> <br/><br/>
+		6.<input type="text" name="answer6"  size="20" maxlength="30" /> <br/><br/>
+		7.<input type="text" name="answer7"  size="20" maxlength="30" /> <br/><br/>
+		8.<input type="text" name="answer8"  size="20" maxlength="30" /> <br/><br/>
+		9.<input type="text" name="answer9"  size="20" maxlength="30" /> <br/><br/>
+		10.<input type="text" name="answer10" size="20" maxlength="30" /> <br/><br/>
+		
+		
+		<input type="radio" id="public" value="public"/> Public
+		<input type="radio" id="private" value="private"/> Private </br></br>
+			
+		<div id="key" style="visibility:hidden">
+			<input type="text" id="keyy" size="10" maxlength="3"/>
+			<a href="#"> <!-- db process will be edited-->
+				<input type="submit" name="submit" value="Submit" size="40" /> <br/><br/><br/>
+			</a>
+		</div>
+			<br/>
+			<br/><br/><br/><br/>
+		
+	<a href="pollPage.html">
+		<input type="button" name="pl" value="Poll Link" size="40" /> <br/><br/>
+	</a>
+	<a href="resultPage.html">
+		<input type="button" name="rl" value="Result Link" size="40" /> 
+	</a>
 </form>
+</center>
 </body>
 </html>
-
