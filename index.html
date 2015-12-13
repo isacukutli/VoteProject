@@ -1,4 +1,9 @@
+<!DOCTYPE HTML>
 <!-
+    Vote Project 2015
+    Created for CS 320 Software Engineering Course in Özyeğin University
+->
+
 <?php
   $host = "localhost";
   $user = "";
@@ -9,9 +14,9 @@
   my_sql_select_db($db);
   
   if(isset($_POST['username'])) {
-    $username = $_POST['username'];
+    $email = $_POST['email'];
     $password =   $_POST['password'];
-    $sql = SELECT * FROM table_name WHERE username='".$username"' AND password='".$password"' LIMIT 1;
+    $sql = SELECT * FROM table_name WHERE email='".$email"' AND password='".$password"' LIMIT 1;
     $res = mysql_query($sql);
     if (mysql_num_rows($res) == 1) {
       echo "Logged in";
@@ -22,110 +27,136 @@
     }
   }
 ?>
-->
-
-<!DOCTYPE HTML>
-<!-
-    Vote Project 2015
-    Created for CS 320 Software Engineering Course in Özyeğin University
-->
 
 <html>
-  <head>
-    <title>
-      VOTE Project
-    </title>
-    <meta charset="utf-8"/>
-    <link type="text/css" rel="stylesheet" href="main.css"/>
-    <script language="JavaScript" type="text/javascript">
-function login(showhide){
-if(document.getElementById('popupbox-login')) {
-if(showhide == "show"){
-    document.getElementById('popupbox-login').style.visibility="visible";
-}else if(showhide == "hide"){
-    document.getElementById('popupbox-login').style.visibility="hidden"; 
-}
-  
-} else if(document.getElementById('popupbox-register')) {
-  if(showhide == "show"){
-    document.getElementById('popupbox-register').style.visibility="visible";
-}else if(showhide == "hide"){
-    document.getElementById('popupbox-register').style.visibility="hidden"; 
-}
-}
-}
-</script>
-  </head>
-  
-  <body class="index">
-    <div id="logo">
-      <header id="header" class="alt">
-        <h1 id="logo">
-          <a href="index.html">
-            <img src="images/logo.jpg">
-          </a>
-        </h1>
-      <p align=right> 
-        <a href="javascript://" onclick="javascript:login('show');"> 
-          <input class="button" type="button" value="Login"></a>
-        <a href="javascript://" onclick="javascript:login('show');"> 
-          <input class="button" type=button value="Register"></a>
-      </p>
-          
-      <div id="popupbox-login">
-          <form method="post" action=""><br/><br/>
-            E-Mail: <input type="text" name="mail"/><br/><br/>
-            Password: <input type="password" name="password"/><br/><br/>
-            <input type="button" class="button" value="Submit"/>
-            <a href="javascript://" onclick="javascript:login('hide');"> 
-            <input class="button" type=button value="Cancel"></a>
-          </form>
-        </div>
-      <div id="popupbox-register">
-          <form method="post" action=""><br/><br/>
-            E-Mail: <input type="text" name="mail"/><br/><br/>
-            Password: <input type="password" name="password"/><br/><br/>
-            <input type="button" class="button" value="Register"/><br/><br/>
-            <a href="javascript://" onclick="javascript:login('hide');"> 
-            <input class="button" type=button value="Cancel"></a>
-          </form>
-        </div>
-        
-      </p>
-      </header>
-    </div>
- 
-    <section id="banner">
-      <div class="inner">
-          <header>
-            <h2>
-              VOTE Project
-            </h2>
-          </header>
-          <p>
-            Vote Project is a website where a user creates his/him surveys and <br/>
+	<head>
+	<link type="text/css" rel="stylesheet" href="main.css"/>
+	
+		<title>
+		Vote Project
+		</title>
+	</head>
+	<body>
+		<div id="logo">
+			<a href="index.html">
+				<img src="images/logo.png">
+			</a>
+		</div>
+		
+		<div id="lgn">
+		<form name="login" onSubmit="return validateLoginForm();" action="loggedIndex.html" method="post">
+			<center><fieldset>
+				<legend>
+					Login
+				</legend></br>
+				E-Mail: <input type="text" name="email" /></br></br>
+				Password: <input type="password" name="password" /></br></br>
+				<input type="submit" value="Login"/>
+			</fieldset></center>
+		</form>
+		<form name="register" onSubmit="return createLoginInfo();" action="loggedIndex.html" method="post">
+			<center><fieldset>
+				<legend>
+					Register
+				</legend></br>
+				E-Mail: <input type="text" name="email" /></br></br>
+				Password: <input type="password" name="password" /></br></br>
+				<input type="submit" value="Login"/>
+			</fieldset></center>
+		</form>
+		</div>
+		
+		<div id="desc">
+			<header>
+				<h2>
+				  VOTE Project
+				</h2>
+			</header>
+		
+					Vote Project is a website where a user creates his/him surveys and <br/>
             share it with related users in order to observe the panoramic sight of <br/>
             the topics which are polled among the users.
             
             <br/><br/>Vote Project works with any kind of browsers by creating a new <br/>
             survey or declaring the idea like choosing an existing choice or <br/>
-            creating a new choice to survey.<br/><br/><br/>
-          </p>
-          <footer>
-            <a href="createNewPoll.html"><input class="button" id="Copy" type="button" value="Create New Poll"></a>
-          </footer>
-        </div>
-      </section>
-      
-      <footer id="footer">
-        <ul class="icons">
-          <li>
-            <a href=".."> <img src="images/twitter.svg"></a>
-            <a href=".."> <img src="images/facebook.svg"></a>
-            <a href=".."> <img src="images/github.svg"></a>
-          </li>
-        </ul>
-      </footer>
-    </div>
-  </body>
+            creating a new choice to survey.
+				
+		</div>
+		
+		<div id="contacts">
+			<footer id="footer">
+				<ul class="icons" type="none";>
+					<li>
+						<a href=".."> <img src="images/twitter.svg"></a>
+						<a href=".."> <img src="images/facebook.svg"></a>
+						<a href=".."> <img src="images/github.svg"></a>
+					</li>
+				</ul>
+			</footer>
+		</div>
+		<script type="text/javascript">
+			function validateLoginForm () {
+				var mail = document.login.email.value;
+				var pw = document.login.password.value;
+				
+				var cormail = "aaaaaa";
+				var corpw = "11111111";
+			
+				if (mail==null || mail=="" || pw==null || pw=="") {
+					alert("Error: E-mail and password must be entered ");
+					return false;
+				}
+				if(mail.length<5){
+					alert("Your e-mail address must be at least \n5 characters long. \n Please try again.");
+					return false;
+				}
+				if(pw.length<8) {
+					alert("Your password must be at least \n8 characters long. \n Please try again.");
+					return false;
+				} else {
+					if(mail==cormail && pw==corpw){
+						alert ("Logged in successfully!")
+						window.location = "loggedIndex.html";
+						return false;
+					} else {
+						$.ajax({
+							type: "POST",
+							url: "checkPassword.php",
+							data: { mail:mail, pw:pw }
+						}).done(function(data) {
+							if(echo "Logged in" >= 0) {
+								alert ("Logged in successfully!")
+								window.location = "loggedIndex.html";
+							} else if(echo "Logged in" >= 0){
+								alert ("Please check your login information!")
+								window.location = "index.html";
+							}
+							return false;
+						}
+					}
+				}
+			}
+			
+			function createLoginInfo() {
+				var mail = document.login.email.value;
+				var pw = document.login.password.value;
+				
+				if (mail==null || mail=="" || pw==null || pw=="") {
+					alert("Error: E-mail and password must be entered ");
+					return false;
+				}
+				if(mail.length<5){
+					alert("Your e-mail address must be at least \n5 characters long. \n Please try again.");
+					return false;
+				}
+				if(pw.length<8) {
+					alert("Your password must be at least \n8 characters long. \n Please try again.");
+					return false;
+				} else {
+					<!-- db will be processing -->
+				}
+			}
+		</script>
+		
+	</body>
 </html>
