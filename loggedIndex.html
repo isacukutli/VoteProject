@@ -54,7 +54,34 @@
 			showLoggedInfo();
 		</div>
 		-->
-		
+		<input class="button" type="button" value="Login" onclick="popupBox('show');">
+		<input class="button" type="button" value="Register" onClick="popupBox('show');">
+		<div id="lgn" style="visibility:hidden">
+		<form name="login" method="post">
+			<center><fieldset>
+				<legend>
+					Login
+				</legend></br>
+				E-Mail: <input type="text" name="email" /></br></br>
+				Password: <input type="password" name="password" /></br></br>
+				<input type="submit" value="Login" onClick=" return validateLoginForm()">
+				<input type="button" value="Cancel" onclick="popupBox('hide');">
+			</fieldset></center>
+		</form>
+		</div>
+		<div id="reg" style="visibility:hidden">
+		<form name="register" onSubmit="return createLoginInfo();" action="regedIndex.html" method="post">
+			<center><fieldset>
+				<legend>
+					Register
+				</legend></br>
+				E-Mail: <input type="text" name="email" /></br></br>
+				Password: <input type="password" name="password" /></br></br>
+				<input type="submit" value="Register"/>
+				<input type="button" value="Cancel" onclick="popupBox('hide');">
+			</fieldset></center>
+		</form>
+		</div>
 		<div id="desc2">
 			<header>
 				<h2>
