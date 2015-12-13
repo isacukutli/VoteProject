@@ -1,7 +1,42 @@
+<?php
+  $host = "localhost";
+  $user = "";
+  $pass = "";
+  $db = "";
+  
+  my_sql_connect($host, $user, $pass);
+  my_sql_select_db($db);
+  
+  if(isset($_POST['username'])) {
+    $email = $_POST['email'];
+    $password =   $_POST['password'];
+    $sql = SELECT email='".$email"' FROM table_name LIMIT 1;
+    $res = mysql_query($sql);
+    if (mysql_num_rows($res) == 1) {
+      echo "OK";
+      exit();
+    } else {
+      echo "Invalid login information!"
+      exit();
+    }
+  }
+?>
+
 <html>
 	<head>
 		<link type="text/css" rel="stylesheet" href="main.css"/>
 		<script language="JavaScript" type="text/javascript">
+			<!--function showLoggedInfo() {
+				$.ajax({
+					type: "POST",
+					url: "checkPassword.php",
+					data: { mail:mail}
+				}).done(function(data) {
+					if(echo "OK" >= 0) {
+						
+					} 
+			}
+			-->
 		</script>
 		<title>
 		Vote Project
@@ -15,9 +50,10 @@
 			</a>
 		</div>
 		
-		<div id="logged">
-			
+		<!--<div id="logged">
+			showLoggedInfo();
 		</div>
+		-->
 		
 		<div id="desc2">
 			<header>
